@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 4%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 6%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 142 72% 42%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 142 72% 55%;
+
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 142 20% 90%;
+
+    --muted: 0 0% 14%;
+    --muted-foreground: 142 5% 55%;
+
+    --accent: 142 72% 48%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 142 10% 18%;
+    --input: 0 0% 12%;
+    --ring: 142 72% 42%;
+
+    --radius: 0.25rem;
+
+    /* Custom design tokens */
+    --gradient-glow: linear-gradient(135deg, hsl(142 72% 42%), hsl(142 72% 62%));
+    --shadow-glow: 0 0 25px hsl(142 72% 42% / 0.35);
+    --shadow-intense: 0 0 50px hsl(142 72% 42% / 0.5);
+    --text-glow: 0 0 15px hsl(142 72% 42% / 0.7);
+
+    /* Fonts */
+    --font-display: 'Orbitron', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-mono);
+  }
+
+  input, textarea, button, select {
+    transform: translateZ(0); /* Fix for typing inside 3D CSS transforms */
+    -webkit-transform: translateZ(0);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+}
+
+@layer utilities {
+  .text-glow {
+    text-shadow: var(--text-glow);
+  }
+
+  .box-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .box-glow-intense {
+    box-shadow: var(--shadow-intense);
+  }
+
+  .gradient-text {
+    background: var(--gradient-glow);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .border-glow {
+    border-color: hsl(var(--primary));
+    box-shadow: 0 0 15px hsl(var(--primary) / 0.3), inset 0 0 15px hsl(var(--primary) / 0.1);
+  }
+}
+
+/* 3D Cube Styles */
+.cube-container {
+  perspective: 2000px;
+  perspective-origin: center center;
+}
+
+.cube {
+  transform-style: preserve-3d;
+  transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cube-face {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary) / 0.5);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary));
+}
+
+/* Typewriter cursor blink */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Hide scrollbar for horizontal nav on mobile */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Smooth scrolling for mobile anchor navigation */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Offset scroll target below sticky nav */
+[id^="section-"] {
+  scroll-margin-top: 4.5rem;
+}

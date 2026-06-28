@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "lib": ["es2024", "dom"],
+    "strict": true
+  },
+  "include": [
+    "**/*.ts"
+  ]
+}
